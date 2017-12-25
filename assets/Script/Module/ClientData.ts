@@ -5,8 +5,6 @@
 export class ClientData {
     _oResource : any;
 
-    static _oData : ClientData;
-
     constructor () {
         let self = this;
         self._oResource = {};
@@ -20,6 +18,7 @@ export class ClientData {
         return this._oResource;
     }
 
+    static _oData : ClientData;
     static getInstance () : ClientData {
         let self = this;
         if (! self._oData) {
