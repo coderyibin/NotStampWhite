@@ -5,7 +5,7 @@
 const {ccclass, property, executionOrder} = cc._decorator;
 import { Emitter } from "../../Module/Emitter";
 import ButtonClick from "../ButtonClick";
-import { Common } from "../../Module/Common";
+import { ClientData } from "../../Module/ClientData";
 @ccclass
 @executionOrder(0)
 export default class BaseComponent extends cc.Component {
@@ -13,13 +13,13 @@ export default class BaseComponent extends cc.Component {
     ArrButton : cc.Node[] = [];
 
     _emitter : Emitter;
-    _common : Common;
+    _client : ClientData;
     _logicComponentName : string;
     _spriteFrame : {};
     onLoad () : void {
         let self = this; 
         self._emitter = Emitter.getInstance();
-        self._common = Common.getInstance();
+        self._client = ClientData.getInstance();
         if (self._isLogicNode()) {
             self._logicNode();
         }

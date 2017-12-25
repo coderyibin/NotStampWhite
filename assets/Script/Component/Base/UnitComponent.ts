@@ -11,23 +11,16 @@
     _sUnitCompName : string;
     //父节点
     _nodeParent : cc.Node;
-
-    constructor (unitName : string, parent ?: cc.Node) {
-        super();
-        let self = this;
-        self._sUnitCompName = unitName;
-        self._nodeParent = parent;
-    }
+    //单元组件的数据id
+    _nUnitDataId : number;
     
     onLoad () : void {
         super.onLoad();
         let self = this;
 
-        self._initUI();
+        self._fInitUI();
         self.node.parent = self._nodeParent;
     }
 
-    _initUI () : void {
-
-    }
+    _fInitUI () : void {}
  }
