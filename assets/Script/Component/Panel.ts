@@ -18,7 +18,7 @@ export default class Panel extends UnitComponent {
     fRefresh () : void {
         let self = this;
         let _sprite : cc.Sprite = self.node.getComponent("cc.Sprite");
-        let texture : cc.Texture2D = 
+        // let texture : cc.Texture2D = 
     }
 
     fSetUnitData (data) : void {

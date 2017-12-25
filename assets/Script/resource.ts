@@ -77,11 +77,35 @@ export enum RES_TYPE {
         });
     }
 
-    static fGetRes () : cc.SpriteFrame {
+    /**
+     * 获取资源
+     * @param file 资源名称 
+     */
+    static fGetRes (file : string) : cc.SpriteFrame {
+        let g_Arr = RES.Res.global
+        for (let i in g_Arr) {//优先遍历全局资源
+            if (file == i) {
+                let res = g_Arr[i];
+                return res;
+            }
+        }
+        let sName : string = cc.director.getScene().name;
+        let arr = RES.Res[sName];
+        for (let i in arr) {//遍历场景资源
+            if (file == i) {
+                let res = arr[i];
+                return res;
+            }
+        }
         return null;
     }
 
-    static fReleaseRes (type : RES_TYPE, resName : string) : void {
+    /**
+     * 释放资源
+     * @param type 资源类型
+     * @param resName 资源名称
+     */
+    static fReleaseRes (type : RES_TYPE, resName ?: string) : void {
         if (type == RES_TYPE.SINGLE) {
 
         }
