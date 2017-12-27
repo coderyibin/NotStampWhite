@@ -21,7 +21,7 @@ export default class HelloMenu extends BaseComponent {
         });
     }
 
-    On_Button_StartGameClick (event) : void {
+    _tap_Button_StartGame (event) : void {
         let self = this;
         self._runScene(SCENE_NAME.MENU_SCENE, ()=>{});       
     }

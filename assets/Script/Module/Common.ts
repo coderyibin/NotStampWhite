@@ -8,6 +8,12 @@
      START_SCENE = "StartGame"
  }
 
+ //方块的尺寸
+ export enum PANEL_SIZE {
+     WIDTH = 178,
+     HEIGHT = 319
+ }
+
  export class Common {
      
     /**
@@ -18,5 +24,19 @@
     static fGetRandom (min : number, max : number) : number {
         let num : number = Math.floor(Math.random() * max + min);
         return num;
+    }
+
+    /**
+     * 获取文件名称
+     * @param 文件路径
+     */
+    static fGetFileName (path : string) : string {
+        let index : number = path.indexOf("/"); 
+        if (index != -1) {
+            let name = path.substr(index, path.length);
+            return name;
+        } else {
+            return path;
+        }
     }
  }

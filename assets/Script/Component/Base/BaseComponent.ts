@@ -6,6 +6,7 @@ const {ccclass, property, executionOrder} = cc._decorator;
 import { Emitter } from "../../Module/Emitter";
 import ButtonClick from "../ButtonClick";
 import { ClientData } from "../../Module/ClientData";
+import { RES, RES_TYPE } from "../../resource";
 @ccclass
 @executionOrder(0)
 export default class BaseComponent extends cc.Component {
@@ -16,6 +17,7 @@ export default class BaseComponent extends cc.Component {
     _client : ClientData;
     _logicComponentName : string;
     _spriteFrame : {};
+    _fExitFunc : Function;
     onLoad () : void {
         let self = this; 
         self._emitter = Emitter.getInstance();
@@ -23,11 +25,17 @@ export default class BaseComponent extends cc.Component {
         if (self._isLogicNode()) {
             self._logicNode();
         }
+        self._initData();
         self._initUI();
     }
 
     _initUI () : void {
 
+    }
+
+    _initData () : void {
+        let self = this;
+        self._fExitFunc = null;
     }
 
     /**
@@ -58,7 +66,7 @@ export default class BaseComponent extends cc.Component {
         let self = this;
         //获取逻辑节点脚本组件对象
         let oCompObject = cc.director.getScene().getChildByName("LogicNode").getComponent(self._logicComponentName);
-        let sName = "On_" + name + "Click";
+        let sName = "_tap_" + name + "";
         if (oCompObject[sName]) {
             //添加按钮普通的点击事件
             self.addBtnEvent(sName, btn);
@@ -73,10 +81,12 @@ export default class BaseComponent extends cc.Component {
      * @param cb 加载成功的回调函数 选填
      */
     _runScene (name : string, cb ?: Function) : void {
+        let self = this;
         cc.director.preloadScene(name, (err) => {
             if (err) {
                 cc.warn("场景预加载失败->[", name, "]");
             } else {
+                self.onExit();
                 cc.director.loadScene(name, cb);
             }
         });
@@ -126,6 +136,21 @@ export default class BaseComponent extends cc.Component {
         clickEventHandler.handler = name;
         clickEventHandler.customEventData = data;
         btn.clickEvents.push(clickEventHandler);
+    }
+
+    /**
+     * 当前组件被销毁时调用
+     */
+    onDestroy () : void {
+       
+    }
+
+    /**
+     * 场景跳转之前做的一些业务
+     */
+    onExit () : void {
+        //当前场景资源的释放
+        RES.fReleaseRes(RES_TYPE.MODULE);
     }
 
 }

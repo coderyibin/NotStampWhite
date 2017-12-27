@@ -15,14 +15,14 @@ export default class GameMenu extends BaseComponent {
         super.onLoad();
     }
     //经典模式
-    On_Button_ClassicTypeClick (event) : void {
+    _tap_Button_ClassicType (event) : void {
         let self = this;
         console.log("经典模式");
         self._runScene(SCENE_NAME.START_SCENE, ()=>{});
     }
 
     //急速模式
-    On_Button_QuickTypeClick (event) : void {
+    _tap_Button_QuickType (event) : void {
         let self = this;
         console.log("急速模式");
     }

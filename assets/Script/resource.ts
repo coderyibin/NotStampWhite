@@ -9,7 +9,6 @@ export enum RES_TYPE {
 /**
  * 资源操作的脚本
  */
-
  export class RES {
     //资源数据
     static Res = {
@@ -52,8 +51,12 @@ export enum RES_TYPE {
     static loadRes (file : string, cb ?: Function, target ?: any) : void {
         let sName : string = cc.director.getScene().name;
         let func : Function = (res, target) => {
+            let fileName = Common.fGetFileName(file);
             //场景名称-文件名称
-            RES.Res[sName][file] = res;
+            if (! RES.Res[sName]) {
+                RES.Res[sName] = {};
+            }
+            RES.Res[sName][fileName] = res;
         };
         RES._loadRes(file, func, target);
     }
@@ -68,11 +71,17 @@ export enum RES_TYPE {
     }
 
     static _loadRes (file : string, cb : Function, target : any) : void {
-        cc.loader.loadRes(file, (err, res) => {
+        cc.loader.loadRes(file, (err, res) => {//res 图片的话为texture2d对象
             if (err) {
                 cc.warn(res, "图片资源读取出错");
                 return;
             }
+            if (res instanceof cc.Texture2D) {
+                let frame : cc.SpriteFrame = new cc.SpriteFrame();
+                frame.setTexture(res);
+                res = frame;
+            }
+            //传出去的数据都是spriteframe
             cb(res, target);
         });
     }
@@ -103,11 +112,28 @@ export enum RES_TYPE {
     /**
      * 释放资源
      * @param type 资源类型
-     * @param resName 资源名称
+     * @param resName 资源名称--如果类型为模块资源，则resName默认为场景名称
      */
     static fReleaseRes (type : RES_TYPE, resName ?: string) : void {
         if (type == RES_TYPE.SINGLE) {
-
+            
+        } else if (type == RES_TYPE.MODULE) {
+            if (! resName) {
+                let scene = cc.director.getScene()
+                let sName : string = scene.name;
+                let list = RES.Res[sName];
+                for (let i in list) {
+                    cc.loader.release(list[i]);
+                }
+            }
+        } else {
+            
         }
     }
  };
+
+ /**
+  * 资源的管理
+  * 在控制台可以用 cc.RES.Res 这个来查看当前内存的资源情况方便调试
+  */
+ cc["RES"] = RES;
