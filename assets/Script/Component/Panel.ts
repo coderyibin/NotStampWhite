@@ -13,7 +13,23 @@ export default class Panel extends UnitComponent {
     _oData : any;
 
     onLoad () : void {
+        this.node.on("click", this._tap_Touch, this);
+    }
 
+    _tap_Touch () : void {
+        let self = this;
+        if (! self._oData.isBlack) {
+            //报错显示红色
+            self.node.color = cc.Color.RED;
+            var seq = cc.repeat(
+                cc.sequence(
+                    cc.fadeIn(0.05),
+                    cc.fadeOut(0.05),
+                    cc.fadeIn(0.05)
+                ), 3);
+            self.node.runAction(seq);
+        }
+        return this._oData.parent.fIsMovePanel(this._oData.isBlack);
     }
 
     fRefresh () : void {

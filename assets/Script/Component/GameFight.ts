@@ -28,10 +28,10 @@ export default class GameFight extends BaseComponent {
     _initUI () : void {
         let self = this;
         let res = self._client.fGetResData().res;
-            self._nResLen = RES.getJsonLength(res);
-            for (let i in res) {
-                RES.loadRes(res[i], self.fCallback, self);
-            }
+        self._nResLen = RES.getJsonLength(res);
+        for (let i in res) {
+            RES.loadRes(res[i], self.fCallback, self);
+        }
     }
 
     fCallback (data, target) : void {
@@ -44,26 +44,48 @@ export default class GameFight extends BaseComponent {
 
     fAddChunk () : void {
         let self = this;
-        for(let j = 1; j < 4; j ++) {
-            //随机黑块的下标
-            let black = Common.fGetRandom(0, 3);
-            for (let i = 0; i < self._nRow; i ++) {
-                let oData : any = {};
-                oData = {
-                    x : PANEL_SIZE.WIDTH * i + 1,
-                    y : PANEL_SIZE.HEIGHT * j + 1
-                };
-                if (black == i) {
-                    oData["isBlack"] = true;
-                }
-                let panel = RES.fGetRes("Panel");
-                self.PanelNode.addChild(panel);
-                //
-                panel.getComponent("Panel").fSetUnitData(oData);
-            }
+        for(let j = 1; j < 5; j ++) {
+            self.fAddColChunk(j);
         }
     }
 
+    fAddColChunk (j : number) : void {
+        let self = this;
+        //随机黑块的下标
+        let black = Common.fGetRandom(0, 3);
+        for (let i = 0; i < self._nRow; i ++) {
+            let oData : any = {};
+            let interval = 0;
+            oData = {
+                parent : self,
+                x : PANEL_SIZE.WIDTH * i,
+                y : PANEL_SIZE.HEIGHT * j
+            };
+            if (i > 0) {
+                oData.x += 2 * i;
+            }
+            oData.y += 2 * j;
+            if (black == i) {
+                oData["isBlack"] = true;
+            }
+            let panel = RES.fGetRes("Panel");
+            self.PanelNode.addChild(panel);
+            panel.getComponent("Panel").fSetUnitData(oData);
+        }
+    }
 
+    fIsMovePanel (bool : boolean) : void {
+        let self = this;
+        if (bool) {
+            self.fAddColChunk(5);
+            self.fMovePanel();
+        }
+    }
 
+    fMovePanel () : void {
+        let list = this.PanelNode.children;
+        for (let i in list) {
+            list[i].y -= list[i].getContentSize().height + 1;
+        }
+    }
 }
