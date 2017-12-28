@@ -58,6 +58,7 @@ export default class GameFight extends BaseComponent {
                 }
                 let panel = RES.fGetRes("Panel");
                 self.PanelNode.addChild(panel);
+                //
                 panel.getComponent("Panel").fSetUnitData(oData);
             }
         }
