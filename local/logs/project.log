@@ -1,0 +1,176 @@
+2017-12-28T13:25:27.937Z - normal: Load ~/.CocosCreator/settings.json
+2017-12-28T13:25:27.940Z - normal: checking language setting...
+2017-12-28T13:25:27.940Z - normal: Language: zh
+2017-12-28T13:25:30.220Z - success: protocol editor-framework registered
+2017-12-28T13:25:30.220Z - success: protocol app registered
+2017-12-28T13:25:30.220Z - success: protocol theme registered
+2017-12-28T13:25:30.220Z - success: protocol packages registered
+2017-12-28T13:25:30.220Z - success: protocol unpack registerred
+2017-12-28T13:25:30.220Z - success: protocol disable-commonjs registerred
+2017-12-28T13:25:30.586Z - normal: connected!
+2017-12-28T13:25:30.602Z - normal: Check project /Users/lin/Desktop/creator/NotStampWhite
+2017-12-28T13:25:30.605Z - normal: Initializing Cocos2d
+2017-12-28T13:25:31.180Z - normal: Initializing Asset Database
+2017-12-28T13:25:31.233Z - success: protocol uuid registerred
+2017-12-28T13:25:31.234Z - success: protocol db registerred
+2017-12-28T13:25:31.234Z - success: protocol thumbnail registerred
+2017-12-28T13:25:31.234Z - normal: Loading editor/builtin packages
+2017-12-28T13:25:31.382Z - success: anysdk loaded
+2017-12-28T13:25:31.552Z - success: assets loaded
+2017-12-28T13:25:31.556Z - success: builder loaded
+2017-12-28T13:25:31.558Z - success: cocos-analytics loaded
+2017-12-28T13:25:31.573Z - success: console loaded
+2017-12-28T13:25:31.578Z - success: hierarchy loaded
+2017-12-28T13:25:31.583Z - success: inspector loaded
+2017-12-28T13:25:31.590Z - success: keystore loaded
+2017-12-28T13:25:31.594Z - success: node-library loaded
+2017-12-28T13:25:31.596Z - success: package-asset loaded
+2017-12-28T13:25:31.598Z - success: preferences loaded
+2017-12-28T13:25:31.601Z - success: project-exporter loaded
+2017-12-28T13:25:31.618Z - success: project-importer loaded
+2017-12-28T13:25:31.622Z - success: project-settings loaded
+2017-12-28T13:25:31.638Z - success: ui-kit loaded
+2017-12-28T13:25:31.642Z - success: ui-grid loaded
+2017-12-28T13:25:31.647Z - success: scene loaded
+2017-12-28T13:25:31.649Z - success: sprite-editor loaded
+2017-12-28T13:25:31.653Z - success: store loaded
+2017-12-28T13:25:31.660Z - success: timeline loaded
+2017-12-28T13:25:31.660Z - normal: Loading builtin packages
+2017-12-28T13:25:31.670Z - success: asset-db-debugger loaded
+2017-12-28T13:25:31.671Z - success: color-picker loaded
+2017-12-28T13:25:31.675Z - success: package-manager loaded
+2017-12-28T13:25:31.686Z - success: sdkbox loaded
+2017-12-28T13:25:31.690Z - success: tester loaded
+2017-12-28T13:25:31.695Z - success: ui-kit-preview-extra loaded
+2017-12-28T13:25:31.699Z - success: ui-kit-preview loaded
+2017-12-28T13:25:31.704Z - success: ui-tree loaded
+2017-12-28T13:25:33.309Z - normal: Initializing project /Users/lin/Desktop/creator/NotStampWhite
+2017-12-28T13:25:33.327Z - normal: Loading packages
+2017-12-28T13:25:33.330Z - normal: Watching packages
+2017-12-28T13:25:33.341Z - normal: Run Application
+2017-12-28T13:25:38.250Z - success: preview server running at http://localhost:7456
+2017-12-28T13:25:51.122Z - normal: 1.7.0
+2017-12-28T13:25:52.600Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T13:26:27.782Z - success: API data generated and copied to /Users/lin/Desktop/creator/NotStampWhite/creator.d.ts
+2017-12-28T13:26:32.414Z - success: VS Code extension installed to /Users/lin/.vscode/extensions
+2017-12-28T13:26:35.256Z - success: TypeScript Configuration file has been copied to /Users/lin/Desktop/creator/NotStampWhite/tsconfig.json
+2017-12-28T13:27:40.602Z - success: API data generated and copied to /Users/lin/Desktop/creator/NotStampWhite/creator.d.ts
+2017-12-28T13:27:42.459Z - success: VS Code extension installed to /Users/lin/.vscode/extensions
+2017-12-28T13:27:44.559Z - success: TypeScript Configuration file has been copied to /Users/lin/Desktop/creator/NotStampWhite/tsconfig.json
+2017-12-28T13:31:40.653Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T13:33:06.109Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T13:35:17.007Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T13:35:53.803Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:04:09.454Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:12:26.920Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:13:52.648Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:14:18.574Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:14:18.629Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:16:12.550Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:16:12.598Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:17:12.441Z - warn: The Asset used in scene "StartGame.fire" is missing. Detailed information:
+Asset url: "db://assets/Scene/StartGame.fire"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:18:28.781Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:20:23.876Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:21:56.882Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:23:34.449Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:24:12.147Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:26:00.980Z - error: Can't add component 'cc.Widget' because start already contains the same component.
+    at Object.errorID (/Applications/CocosCreator.app/Contents/Resources/engine/CCDebugger.js:343:18)
+    at cc_Node.cc.Class._checkMultipleComp (/Applications/CocosCreator.app/Contents/Resources/engine/cocos2d/core/utils/base-node.js:802:20)
+    at cc_Node.cc.Class._addComponentAt (/Applications/CocosCreator.app/Contents/Resources/engine/cocos2d/core/utils/base-node.js:921:23)
+    at RemoveComponentCommand.undo (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/page/scene-utils/scene-undo.js:1:4960)
+    at CommandGroup.undo (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor-framework/lib/share/undo.js:1:796)
+    at UndoList.undo (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor-framework/lib/share/undo.js:1:1510)
+    at Object.undo (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor/page/scene-utils/scene-undo.js:1:10068)
+    at HTMLElement.scene:undo (file:///Applications/CocosCreator.app/Contents/Resources/app.asar/editor/builtin/scene/panel/scene.js:1:11068)
+    at Object.Panel._dispatch (/Applications/CocosCreator.app/Contents/Resources/app.asar/editor-framework/lib/renderer/panel.js:1:2283)
+2017-12-28T14:26:27.881Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:27:53.195Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:27:53.472Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:28:52.799Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:28:52.901Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:30:10.147Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:30:10.291Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:31:01.292Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:31:01.393Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:37:25.990Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:37:26.100Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:43:03.177Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:43:03.927Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:44:24.100Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:44:24.317Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:47:14.535Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:47:15.462Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:47:45.667Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:47:45.758Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:48:35.134Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:48:35.238Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:49:33.021Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:49:33.141Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:49:40.590Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:53:55.695Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:53:55.837Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:54:46.673Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:55:14.207Z - warn: The Asset used in prefab "Panel.prefab" is missing. Detailed information:
+Asset url: "db://assets/resources/Prefab/Panel.prefab"
+Missing uuid: "85e01cd7-66ab-4c86-84cb-410b7a1b9e0d"
+
+2017-12-28T14:56:00.201Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.
+2017-12-28T14:57:37.461Z - warn: Can not use 'editor' attribute, 'Listener' not inherits from Components.

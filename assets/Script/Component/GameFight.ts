@@ -1,6 +1,6 @@
 import BaseComponent from "./Base/BaseComponent";
 import { RES } from "../resource";
-import { Common } from "../Module/Common";
+import { Common, PANEL_SIZE } from "../Module/Common";
 
 const {ccclass, property} = cc._decorator;
 
@@ -9,6 +9,9 @@ export default class GameFight extends BaseComponent {
     _nResLen : number;
     _nCurLen : number;
     _nRow : number;
+    _nCol : number;
+    @property(cc.Node)
+    PanelNode : cc.Node = null;
 
     onLoad () : void {
         let self = this;
@@ -16,8 +19,9 @@ export default class GameFight extends BaseComponent {
             self._logicComponentName = self.getObjectName();
         }
         super.onLoad();
-        //一排四个
+        //一排四个,三排
         self._nRow = 4;
+        self._nCol = 3;
         self._nCurLen = 0;
     }
 
@@ -40,19 +44,23 @@ export default class GameFight extends BaseComponent {
 
     fAddChunk () : void {
         let self = this;
-        //随机黑块的下标
-        let black = Common.fGetRandom(0, 3);
-        for (let i = 0; i < self._nRow; i ++) {
-            let oData : any = {};
-            oData = {};
-            if (black == i) {
-                oData["isBlack"] = true;
-            }
-            RES.loadRes("Prefab/Panel", (res, self) => {
-                let panel : cc.Node = cc.instantiate(res);
-                self.node.addChild(panel);
+        for(let j = 1; j < 4; j ++) {
+            //随机黑块的下标
+            let black = Common.fGetRandom(0, 3);
+            for (let i = 0; i < self._nRow; i ++) {
+                let oData : any = {};
+                oData = {
+                    x : PANEL_SIZE.WIDTH * i + 1,
+                    y : PANEL_SIZE.HEIGHT * j + 1
+                };
+                if (black == i) {
+                    oData["isBlack"] = true;
+                }
+                let panel = RES.fGetRes("Panel");
+                self.PanelNode.addChild(panel);
                 panel.getComponent("Panel").fSetUnitData(oData);
-            });
+                cc.log(oData);
+            }
         }
     }
 

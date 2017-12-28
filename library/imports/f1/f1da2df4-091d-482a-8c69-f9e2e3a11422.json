@@ -1,0 +1,22 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "black_Menu",
+    "texture": "43e0eec5-5dfd-43dc-a789-cbb149ebb92c",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      360,
+      426
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      360,
+      426
+    ]
+  }
+}

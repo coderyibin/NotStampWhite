@@ -33,7 +33,7 @@
     static fGetFileName (path : string) : string {
         let index : number = path.indexOf("/"); 
         if (index != -1) {
-            let name = path.substr(index, path.length);
+            let name = path.substr(index + 1, path.length);
             return name;
         } else {
             return path;

@@ -12,6 +12,8 @@ import { RES, RES_TYPE } from "../../resource";
 export default class BaseComponent extends cc.Component {
     @property(cc.Node)
     ArrButton : cc.Node[] = [];
+    @property(cc.Node)
+    Canvas : cc.Node = null;
 
     _emitter : Emitter;
     _client : ClientData;

@@ -57,6 +57,7 @@ export enum RES_TYPE {
                 RES.Res[sName] = {};
             }
             RES.Res[sName][fileName] = res;
+            cb(res, target);
         };
         RES._loadRes(file, func, target);
     }
@@ -66,6 +67,7 @@ export enum RES_TYPE {
         let func : Function = (res, target) => {
             //场景名称-文件名称
             RES.Res["global"][file] = res;
+            cb(res, target);
         };
         RES._loadRes(file, func, target);
     }
@@ -81,7 +83,6 @@ export enum RES_TYPE {
                 frame.setTexture(res);
                 res = frame;
             }
-            //传出去的数据都是spriteframe
             cb(res, target);
         });
     }
@@ -90,12 +91,12 @@ export enum RES_TYPE {
      * 获取资源
      * @param file 资源名称 
      */
-    static fGetRes (file : string) : cc.SpriteFrame {
+    static fGetRes (file : string) : any {
         let g_Arr = RES.Res.global
         for (let i in g_Arr) {//优先遍历全局资源
             if (file == i) {
                 let res = g_Arr[i];
-                return res;
+                return res instanceof cc.Prefab ? cc.instantiate(res) : res;
             }
         }
         let sName : string = cc.director.getScene().name;
@@ -103,9 +104,10 @@ export enum RES_TYPE {
         for (let i in arr) {//遍历场景资源
             if (file == i) {
                 let res = arr[i];
-                return res;
+                return res instanceof cc.Prefab ? cc.instantiate(res.data) : res;
             }
         }
+        cc.warn("未找到该资源", file);
         return null;
     }
 
