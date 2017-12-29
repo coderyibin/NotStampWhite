@@ -1,7 +1,7 @@
-import BaseComponent from "./Base/BaseComponent";
-import { Common, SCENE_NAME } from "../Module/Common";
-import { RES } from "../resource";
-import { ClientData } from "../Module/ClientData";
+import BaseComponent from "../Frame/view/BaseComponent";
+import { Common, SCENE_NAME } from "../Frame/common/Common";
+import { RES } from "../Frame/common/resource";
+import { ClientData } from "../Frame/module/ClientData";
 const {ccclass, property} = cc._decorator;
 
 @ccclass

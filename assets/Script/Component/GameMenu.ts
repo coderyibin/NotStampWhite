@@ -1,8 +1,8 @@
 /**
  * 游戏菜单类
  */
-import BaseComponent from "./Base/BaseComponent";
-import { SCENE_NAME } from "../Module/Common";
+import BaseComponent from "../Frame/view/BaseComponent";
+import { SCENE_NAME } from "../Frame/common/Common";
 const {ccclass, property} = cc._decorator;
 
 @ccclass

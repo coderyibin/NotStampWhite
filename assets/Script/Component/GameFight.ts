@@ -1,6 +1,6 @@
-import BaseComponent from "./Base/BaseComponent";
-import { RES } from "../resource";
-import { Common, PANEL_SIZE } from "../Module/Common";
+import BaseComponent from "../Frame/view/BaseComponent";
+import { RES } from "../Frame/common/resource";
+import { Common, PANEL_SIZE, SCENE_NAME} from "../Frame/common/Common";
 
 const {ccclass, property} = cc._decorator;
 
@@ -79,6 +79,12 @@ export default class GameFight extends BaseComponent {
         if (bool) {
             self.fAddColChunk(5);
             self.fMovePanel();
+        } else {
+            //输了！
+            //游戏停止
+            self.scheduleOnce(()=>{
+                self._runScene(SCENE_NAME.OVER_SCENE);
+            }, 1);
         }
     }
 
@@ -86,6 +92,9 @@ export default class GameFight extends BaseComponent {
         let list = this.PanelNode.children;
         for (let i in list) {
             list[i].y -= list[i].getContentSize().height + 1;
+            if (list[i].y < - list[i].getContentSize().height * 2) {
+                list[i].destroy();
+            }
         }
     }
 }

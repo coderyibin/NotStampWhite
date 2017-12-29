@@ -5,7 +5,8 @@
  //场景的名称
  export enum SCENE_NAME {
      MENU_SCENE = "MenuScene",
-     START_SCENE = "StartGame"
+     START_SCENE = "StartGame",
+     OVER_SCENE = "GameOver"
  }
 
  //方块的尺寸

@@ -3,41 +3,50 @@
  * 创建于 2017/12/24
  */
 const {ccclass, property, executionOrder} = cc._decorator;
-import { Emitter } from "../../Module/Emitter";
-import ButtonClick from "../ButtonClick";
-import { ClientData } from "../../Module/ClientData";
-import { RES, RES_TYPE } from "../../resource";
+import { Emitter } from "../ctrl/Emitter"
+// import ButtonClick from "../ButtonClick";
+import { ClientData } from "../module/ClientData"
+import { RES, RES_TYPE } from "../common/resource";
 @ccclass
 @executionOrder(0)
 export default class BaseComponent extends cc.Component {
     @property(cc.Node)
     ArrButton : cc.Node[] = [];
+    @property(cc.Label)
+    ArrLabel : cc.Node[] = [];
     @property(cc.Node)
     Canvas : cc.Node = null;
+    // @property({
+    //     type : cc.Node,
+    //     tooltip: "这是一个屏蔽层layer",
+    // })
+    // ShieldNode : cc.Node = null;
 
     _emitter : Emitter;
     _client : ClientData;
     _logicComponentName : string;
     _spriteFrame : {};
     _fExitFunc : Function;
+    _LabelData : any;//文本对象集合
     onLoad () : void {
         let self = this; 
         self._emitter = Emitter.getInstance();
         self._client = ClientData.getInstance();
+        self._initData();
         if (self._isLogicNode()) {
             self._logicNode();
         }
-        self._initData();
         self._initUI();
     }
 
     _initUI () : void {
-
+        let self = this;
     }
 
     _initData () : void {
         let self = this;
         self._fExitFunc = null;
+        self._LabelData = {};
     }
 
     /**
@@ -47,6 +56,16 @@ export default class BaseComponent extends cc.Component {
         let self = this;
         //当前如果是逻辑节点才去注册这个事件，避免重复注册
         self._emitter.on("runScene", self._runScene, self);
+        
+        self._registerButton();
+        self._fLabelObject();
+    }
+
+    /**
+     * 注册按钮事件
+     */
+    _registerButton () : void {
+        let self = this;
         for (let i in self.ArrButton) {
             let _node = self.ArrButton[i];
             let _btn = _node.getComponent("cc.Button");
@@ -56,6 +75,17 @@ export default class BaseComponent extends cc.Component {
             //     btn : _btn,
             //     comp : self._logicComponentName
             // });
+        }
+    }
+
+    /**
+     * 分析文本对象
+     */
+    _fLabelObject () : void {
+        let self = this;
+        for (let i in self.ArrLabel) {
+            let sName = self.ArrLabel[i].name;
+            self._LabelData[sName] = self.ArrLabel[i];
         }
     }
 
