@@ -12,6 +12,8 @@ export default class GameFight extends BaseComponent {
     _nCol : number;
     @property(cc.Node)
     PanelNode : cc.Node = null;
+    @property(cc.Node)
+    ShieldNode : cc.Node = null;
 
     onLoad () : void {
         let self = this;
@@ -79,9 +81,10 @@ export default class GameFight extends BaseComponent {
         if (bool) {
             self.fAddColChunk(5);
             self.fMovePanel();
-        } else {
+        } else {cc.Node
             //输了！
             //游戏停止
+            self.ShieldNode.addComponent(cc.Button);
             self.scheduleOnce(()=>{
                 self._runScene(SCENE_NAME.OVER_SCENE);
             }, 1);

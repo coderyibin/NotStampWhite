@@ -1,5 +1,6 @@
-import { UnitComponent } from "./Base/UnitComponent";
-import { RES } from "../resource";
+import { UnitComponent } from "../Frame/view/UnitComponent";
+import { RES } from "../Frame/common/resource";
+import { PANEL_SIZE } from "../Frame/common/Common";
 
 const {ccclass, property} = cc._decorator;
 
@@ -18,7 +19,18 @@ export default class Panel extends UnitComponent {
 
     _tap_Touch () : void {
         let self = this;
+        let bool : boolean = true;
         if (! self._oData.isBlack) {
+            bool = false;
+        } else {
+            let multiple =  self.node.y / PANEL_SIZE.HEIGHT;
+            if (multiple < 2) {
+                bool = true;
+            } else {
+                bool = false;
+            }
+        }
+        if (bool === false) {
             //报错显示红色
             self.node.color = cc.Color.RED;
             var seq = cc.repeat(
@@ -27,9 +39,9 @@ export default class Panel extends UnitComponent {
                     cc.fadeOut(0.05),
                     cc.fadeIn(0.05)
                 ), 3);
-            self.node.runAction(seq);
+            self.node.runAction(seq);   
         }
-        return this._oData.parent.fIsMovePanel(this._oData.isBlack);
+        return self._oData.parent.fIsMovePanel(bool);
     }
 
     fRefresh () : void {
