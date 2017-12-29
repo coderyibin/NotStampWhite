@@ -7,13 +7,15 @@ import { Emitter } from "../ctrl/Emitter"
 // import ButtonClick from "../ButtonClick";
 import { ClientData } from "../module/ClientData"
 import { RES, RES_TYPE } from "../common/resource";
+import PlayerCtrl from "../../Ctrl/PlayerCtrl";
+import { LOCAL_KEY } from "../common/Common";
 @ccclass
 @executionOrder(0)
 export default class BaseComponent extends cc.Component {
     @property(cc.Node)
     ArrButton : cc.Node[] = [];
     @property(cc.Label)
-    ArrLabel : cc.Node[] = [];
+    ArrLabel : cc.Label[] = [];
     @property(cc.Node)
     Canvas : cc.Node = null;
     // @property({
@@ -24,14 +26,17 @@ export default class BaseComponent extends cc.Component {
 
     _emitter : Emitter;
     _client : ClientData;
+    _playerCtrl : PlayerCtrl;
     _logicComponentName : string;
     _spriteFrame : {};
     _fExitFunc : Function;
     _LabelData : any;//文本对象集合
     onLoad () : void {
+        cc.director.setDisplayStats(false);
         let self = this; 
         self._emitter = Emitter.getInstance();
         self._client = ClientData.getInstance();
+        self._playerCtrl = PlayerCtrl.getInstance();
         self._initData();
         if (self._isLogicNode()) {
             self._logicNode();
@@ -84,7 +89,7 @@ export default class BaseComponent extends cc.Component {
     _fLabelObject () : void {
         let self = this;
         for (let i in self.ArrLabel) {
-            let sName = self.ArrLabel[i].name;
+            let sName = self.ArrLabel[i].node.name;
             self._LabelData[sName] = self.ArrLabel[i];
         }
     }
@@ -181,8 +186,18 @@ export default class BaseComponent extends cc.Component {
      * 场景跳转之前做的一些业务
      */
     onExit () : void {
+        let self = this;
+        if (self._fExitFunc) self._fExitFunc(); 
         //当前场景资源的释放
         RES.fReleaseRes(RES_TYPE.MODULE);
     }
 
+    /**
+     * 清理游戏数据
+     * @param key 要清理的对象数据数组 
+     */
+    _cleanData (key : Array<string>) : void {
+        let self = this;
+        self._playerCtrl.fCleanData([LOCAL_KEY.PLAYER]);
+    }
 }

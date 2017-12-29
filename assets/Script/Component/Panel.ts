@@ -41,7 +41,11 @@ export default class Panel extends UnitComponent {
                 ), 3);
             self.node.runAction(seq);   
         }
-        return self._oData.parent.fIsMovePanel(bool);
+        let data = {
+            is : bool,
+            id : self._oData.ID
+        }
+        return self._oData.parent.fIsMovePanel(data);
     }
 
     fRefresh () : void {

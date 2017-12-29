@@ -1,3 +1,5 @@
+import { Base64 } from "./Base64";
+
 /**
  * 全局的一些定义
  */
@@ -9,6 +11,11 @@
      OVER_SCENE = "GameOver"
  }
 
+ //数据保存本地的key配置
+ export enum LOCAL_KEY {
+     PLAYER = "player",
+ }
+
  //方块的尺寸
  export enum PANEL_SIZE {
      WIDTH = 178,
@@ -16,6 +23,20 @@
  }
 
  export class Common {
+
+    /**
+     * base 64解密
+     */
+    static BaseDecode (str : string) : string {
+        return new Base64().decode(str);
+    }
+
+    /**
+     * base 64解密
+     */
+    static BaseEncode (str : string) : string {
+        return new Base64().encode(str);
+    }
      
     /**
      * 获取指定范围内的随机数

@@ -19,6 +19,9 @@ export default class HelloMenu extends BaseComponent {
         RES.loadJson("resource", (res) =>{
             ClientData.getInstance().fSetResData(res);
         });
+        RES.loadJson("config", (res) =>{
+            ClientData.getInstance().fSetGameConfig(res);
+        });
     }
 
     _tap_Button_StartGame (event) : void {
