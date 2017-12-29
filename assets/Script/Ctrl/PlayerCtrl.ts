@@ -18,7 +18,7 @@ import { Player } from "../Module/Player";
 
     //清理数据
     fCleanData (key : Array<string>) : void {
-        Player.getInstance().fSetPlayer(key);
+        Player.getInstance().fClean(key);
     }
 
     static _ctrl : PlayerCtrl = null;
