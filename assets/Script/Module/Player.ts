@@ -28,9 +28,10 @@ import { LOCAL_KEY } from "../Frame/common/Common";
     fSetPlayer (data : inter_Player) : void {
         let self = this;
         let local : inter_Player = self.fGetPlayer();
-        this._oData.nBout = data.nBout || local.nBout;
+        this._oData.nBout = data.nBout || local.nBout || 0;
         this._oData.nMaxScore = data.nMaxScore || local.nMaxScore || 0;
-        debugger
+        this._oData.sCurTime = data.sCurTime || local.sCurTime;
+        this._oData.sShortTime = data.sShortTime || local.sShortTime;
         self._fSetLocalStorage(LOCAL_KEY.PLAYER, this._oData);
     }
     fGetPlayer () : inter_Player {

@@ -43,5 +43,6 @@ export class ClientData {
         }
         return self._oData;
     }
-
 }
+
+cc["GameConfig"] = ClientData.getInstance();

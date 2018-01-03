@@ -24,6 +24,9 @@ export default class GameOver extends BaseComponent {
         }
         self._LabelData["CurScore"].string = data.cur;
         self._LabelData["MaxScore"].string = data.max;
+        if (data.record === true) {//破记录
+
+        }
         // let nBout : number = self._playerCtrl.fGetPlayerData().nBout;
         // let nMaxScore : number = self._playerCtrl.fGetPlayerData().nMaxScore;
         // self._LabelData["CurScore"].string = nBout;
