@@ -9,6 +9,7 @@ import { ClientData } from "../module/ClientData"
 import { RES, RES_TYPE } from "../common/resource";
 import PlayerCtrl from "../../Ctrl/PlayerCtrl";
 import { LOCAL_KEY } from "../common/Common";
+import GameCtrl from "../../Ctrl/GameCtrl";
 @ccclass
 @executionOrder(0)
 export default class BaseComponent extends cc.Component {
@@ -27,6 +28,7 @@ export default class BaseComponent extends cc.Component {
     _emitter : Emitter;
     _client : ClientData;
     _playerCtrl : PlayerCtrl;
+    _gameCtrl : GameCtrl;
     _logicComponentName : string;
     _spriteFrame : {};
     _fExitFunc : Function;
@@ -37,6 +39,7 @@ export default class BaseComponent extends cc.Component {
         self._emitter = Emitter.getInstance();
         self._client = ClientData.getInstance();
         self._playerCtrl = PlayerCtrl.getInstance();
+        self._gameCtrl = GameCtrl.getInstance();
         self._initData();
         if (self._isLogicNode()) {
             self._logicNode();

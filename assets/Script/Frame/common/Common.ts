@@ -22,6 +22,12 @@ import { Base64 } from "./Base64";
      HEIGHT = 319
  }
 
+ //游戏模式
+ export enum GAME_MODE {
+     MODE_CLASSICS,//经典模式
+     MODE_QUICK,//急速模式
+ }
+
  export class Common {
 
     /**

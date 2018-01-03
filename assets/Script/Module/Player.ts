@@ -14,15 +14,23 @@ import { LOCAL_KEY } from "../Frame/common/Common";
         let self = this;
         self._oData = {
             nBout : 0,
-            nMaxScore : 0
+            nMaxScore : 0,
+            sCurTime : "",
+            sShortTime : "",
         };
     }
+
+    fSetCurTime (time : string) : void {
+        this._oData.sCurTime = time;
+    }
+
 
     fSetPlayer (data : inter_Player) : void {
         let self = this;
         let local : inter_Player = self.fGetPlayer();
         this._oData.nBout = data.nBout || local.nBout;
-        this._oData.nMaxScore = data.nMaxScore || local.nMaxScore;
+        this._oData.nMaxScore = data.nMaxScore || local.nMaxScore || 0;
+        debugger
         self._fSetLocalStorage(LOCAL_KEY.PLAYER, this._oData);
     }
     fGetPlayer () : inter_Player {

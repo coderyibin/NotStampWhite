@@ -1,6 +1,6 @@
 import BaseComponent from "../Frame/view/BaseComponent";
 import { RES } from "../Frame/common/resource";
-import { Common, PANEL_SIZE, SCENE_NAME} from "../Frame/common/Common";
+import { Common, PANEL_SIZE, SCENE_NAME, GAME_MODE} from "../Frame/common/Common";
 import PlayerCtrl from "../Ctrl/PlayerCtrl";
 
 const {ccclass, property} = cc._decorator;
@@ -16,11 +16,12 @@ export default class GameFight extends BaseComponent {
     _nCurLen : number = 0;
     _nRow : number = 0;
     _nCol : number = 0;
-    _nSecond : number = 0;
-    _nMicSecond : number = 0;
+    _nSecond : number = 0;//秒钟
+    _nMicSecond : number = 0;//毫秒
+    _nMinute : number = 0;//分钟
     _bGameStart : boolean = false;
     _nPanelCount : number = 0;//经典模式的方块数量
-    _nPanelCur : number = 0;//经典模式的方块数量
+    _nPanelCur : number = 0;//当前产生的方块个数
     _nCurTouch : number = 0;//当前点击有效的回合
 
     onLoad () : void {
@@ -35,6 +36,7 @@ export default class GameFight extends BaseComponent {
         self._nCurLen = 0;
         self._nSecond = 0;
         self._nMicSecond = 0;
+        self._nMinute = 0;
         self._bGameStart = false;
         self._nPanelCount = self._client.fGetGameConfig().PanelCount;
         self._nPanelCur = 0;
@@ -107,19 +109,26 @@ export default class GameFight extends BaseComponent {
     _fTimeAction () : void {
         let self = this;
         self._nSecond ++;
+        if (self._nSecond > 59) {
+            self._nSecond = 0;
+            self._nMinute ++;
+        }
     }
 
     update () : void {
         let self = this;
         if (self._bGameStart) {
-            //假时间的跳动假象
-            self._nMicSecond ++;
-            if (self._nMicSecond > 99) {
-                self._nMicSecond = 0;
+            if (self._gameCtrl.fGetCurGameMode() == GAME_MODE.MODE_CLASSICS) {//经典模式
+                //假时间的跳动假象
+                self._nMicSecond ++;
+                if (self._nMicSecond > 99) {
+                    self._nMicSecond = 0;
+                }
             }
             let nMicSecond : string = self._nMicSecond < 10 ? "0" + self._nMicSecond : self._nMicSecond + "";
             let nSecond : string = self._nSecond < 10 ? "0" + self._nSecond : self._nSecond + "";
-            self._LabelData["CountDownTime"].string = nSecond + ":" + nMicSecond;
+            let nMinute : string = self._nMinute < 10 ? "0" + self._nMinute : self._nMinute + "";
+            self._LabelData["CountDownTime"].string = nMinute + ":" + nSecond + ":" + nMicSecond;
         }
     }
 
@@ -127,7 +136,7 @@ export default class GameFight extends BaseComponent {
         let self = this;
         if (data.is) {
             if (data.id == self._nPanelCount) {
-                self.fSettlement();
+                self.fSettlement(true);
                 //结束
                 self._runScene(SCENE_NAME.OVER_SCENE);
             } else {
@@ -137,7 +146,7 @@ export default class GameFight extends BaseComponent {
         } else {
             //输了！
             //游戏停止
-            self.fSettlement();
+            self.fSettlement(false);
             //屏蔽所有点击事件
             self.ShieldNode.addComponent(cc.Button);
             //延迟进入结束界面
@@ -148,12 +157,16 @@ export default class GameFight extends BaseComponent {
     }
 
     //游戏结算
-    fSettlement () : void {
+    fSettlement (challenge : boolean) : void {
         let self = this;
         self._bGameStart = false;
         //停止倒计时
         self.unschedule(self._fTimeAction);
-        self._playerCtrl.fSetPlayerData({nBout : self._nCurTouch});
+        // self._playerCtrl.fSetPlayerData({nBout : self._nCurTouch});
+        if (self._gameCtrl.fGetCurGameMode() == GAME_MODE.MODE_CLASSICS) {
+            self._playerCtrl.fSetSucceed(challenge);
+            self._playerCtrl.fSetCurTime(self._LabelData["CountDownTime"].string);
+        }
     }
 
     fMovePanel () : void {

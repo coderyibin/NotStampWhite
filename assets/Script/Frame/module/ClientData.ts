@@ -5,6 +5,7 @@
 export class ClientData {
     _oResource : any;
     _oGameConfig : any;
+    
 
     constructor () {
         let self = this;
@@ -12,11 +13,16 @@ export class ClientData {
         self._oGameConfig = {};
     }
 
-    //设置游戏配置
-    fSetGameConfig (res) : void {
-        this._oGameConfig = res;
+    /**设置游戏配置
+     * json数据格式
+     * {mode : value}
+    */
+    fSetGameConfig (res : inter_Config) : void {
+        for (let i in res) {
+            this._oGameConfig[i] = res[i];
+        }
     }
-    fGetGameConfig () : any {
+    fGetGameConfig () : inter_Config {
         return this._oGameConfig;
     }
 
