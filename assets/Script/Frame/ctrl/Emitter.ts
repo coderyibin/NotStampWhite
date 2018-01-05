@@ -10,7 +10,7 @@ export class Emitter {
      * @param name 事件名称  
      * @param callback 回调函数  
      * @param context 上下文  
-     */  
+     */ 
     public on(name: string, callback: Function, context: any) {  
         let self : Emitter = this;
         let observers: Observer[] = this.listeners[name];  

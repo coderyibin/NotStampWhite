@@ -3,8 +3,8 @@
  */
 
 export class ClientData {
-    _oResource : any;
-    _oGameConfig : any;
+    private _oResource : any;
+    private _oGameConfig : any;
     
 
     constructor () {

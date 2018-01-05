@@ -11,5 +11,7 @@
 
  interface inter_Config {
      mode ?: number;//游戏模式
+     Speed ?: number;//游戏速度
      challenge ?: boolean//是否挑战成功
+     PanelCount ?: number//方块数量--经典模式
  }

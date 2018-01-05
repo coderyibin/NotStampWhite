@@ -101,8 +101,10 @@ export default class GameFight extends BaseComponent {
     _tap_start () : void {
         let self = this;
         self._bGameStart = true;
-        self.schedule(self._fTimeAction, 1);
-        self.fMovePanel();
+        if (self._gameCtrl.fGetCurGameMode() == GAME_MODE.MODE_CLASSICS) {
+            self.schedule(self._fTimeAction, 1);
+            self.fMovePanel();
+        }
     }
 
     //计时器
@@ -124,36 +126,48 @@ export default class GameFight extends BaseComponent {
                 if (self._nMicSecond > 99) {
                     self._nMicSecond = 0;
                 }
+                let nMicSecond : string = self._nMicSecond < 10 ? "0" + self._nMicSecond : self._nMicSecond + "";
+                let nSecond : string = self._nSecond < 10 ? "0" + self._nSecond : self._nSecond + "";
+                let nMinute : string = self._nMinute < 10 ? "0" + self._nMinute : self._nMinute + "";
+                self._LabelData["CountDownTime"].string = nMinute + ":" + nSecond + ":" + nMicSecond;
+            } else {
+                self._LabelData["CountDownTime"].string = null;
             }
-            let nMicSecond : string = self._nMicSecond < 10 ? "0" + self._nMicSecond : self._nMicSecond + "";
-            let nSecond : string = self._nSecond < 10 ? "0" + self._nSecond : self._nSecond + "";
-            let nMinute : string = self._nMinute < 10 ? "0" + self._nMinute : self._nMinute + "";
-            self._LabelData["CountDownTime"].string = nMinute + ":" + nSecond + ":" + nMicSecond;
         }
     }
 
     fIsMovePanel (data : any) : void {
         let self = this;
-        if (data.is) {
-            if (data.id == self._nPanelCount) {
-                self.fSettlement(true);
-                //结束
-                self._runScene(SCENE_NAME.OVER_SCENE);
-            } else {
-                self._nCurTouch ++;
-                self.fMovePanel();
-            }
+        let result = self._gameCtrl.fJudgeGameResult(data);
+        let _re = result.result;
+        if (_re == "fail") {
+
+        } else if (_re == "succeeed") {
+            self.fSettlement(true);
         } else {
-            //输了！
-            //游戏停止
-            self.fSettlement(false);
-            //屏蔽所有点击事件
-            self.ShieldNode.addComponent(cc.Button);
-            //延迟进入结束界面
-            self.scheduleOnce(()=>{
-                self._runScene(SCENE_NAME.OVER_SCENE);
-            }, 1);
+
         }
+        // if (data.is) {
+        //     if (data.id == self._nPanelCount) {
+        //         self.fSettlement(true);
+        //         //结束
+        //         self._runScene(SCENE_NAME.OVER_SCENE);
+        //     } else {
+        //         self._nCurTouch ++;
+        //         self.fMovePanel();
+        //         self._gameCtrl.fSetBlockTouchCount();
+        //     }
+        // } else {
+        //     //输了！
+        //     //游戏停止
+        //     self.fSettlement(false);
+        //     //屏蔽所有点击事件
+        //     self.ShieldNode.addComponent(cc.Button);
+        //     //延迟进入结束界面
+        //     self.scheduleOnce(()=>{
+        //         self._runScene(SCENE_NAME.OVER_SCENE);
+        //     }, 1);
+        // }
     }
 
     //游戏结算
@@ -172,6 +186,17 @@ export default class GameFight extends BaseComponent {
     fMovePanel () : void {
         let self = this;
         self.fAddColChunk(5);
+        let list = self.PanelNode.children;
+        for (let i in list) {
+            list[i].y -= list[i].getContentSize().height + 1;
+            if (list[i].y < - list[i].getContentSize().height * 2) {
+                list[i].destroy();
+            }
+        }
+    }
+
+    fMovePanelAuto () : void {
+        let self = this;
         let list = self.PanelNode.children;
         for (let i in list) {
             list[i].y -= list[i].getContentSize().height + 1;

@@ -1,7 +1,4 @@
-const {ccclass, property, executionOrder} = cc._decorator;
 
-@ccclass
-@executionOrder(0)
 export default class Listener {
     private _listenerList = {};
 
@@ -26,7 +23,7 @@ export default class Listener {
                     oData.node.un(EventName, oData.cb);
                     delete this._listenerList[i];
                     return true;
-                }
+                } 
             }
         }
         return false;

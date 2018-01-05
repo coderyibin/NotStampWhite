@@ -1,11 +1,14 @@
+import { ClientData } from "../module/ClientData";
+
 
 /**
  * 控制器基类，游戏所有的控制器都继承该类
  */
 
  export class BaseCtrl {
+     protected _clientData : ClientData;
      constructor () {
-
+        this._clientData = ClientData.getInstance();
      }
 
     //  /**
