@@ -1,6 +1,7 @@
 import { BaseCtrl } from "../Frame/ctrl/BaseCtrl";
 import { GAME_MODE } from "../Frame/common/Common";
 import { ClientData } from "../Frame/module/ClientData";
+import { Player } from "../Module/Player";
 
 /**
  * 游戏一些其他数据控制
@@ -12,6 +13,7 @@ import { ClientData } from "../Frame/module/ClientData";
     private _curTouchBlock : number;//当前方块点击数量
     private _allBlockNum : number;//经典模式总的方块数量
     private challenge : boolean;//是否挑战成功
+    private _sBoutTime : string;//本局时间
 
     constructor () {
         super();
@@ -69,13 +71,28 @@ import { ClientData } from "../Frame/module/ClientData";
                     this.challenge = true;
                     return {result : "succeed"};
                 } else {//继续生产方块
-                    return {result : "continue"};
+                    let data = {
+                        result : "continue",
+                        out : true,
+                    }
+                    return data;
                 }
             } else {
 
             }
 
         }
+    }
+
+    /**
+     * 本局时间
+     */
+    fSetBoutTime (time : string) : void {
+        this._sBoutTime = time;
+        Player.getInstance().fSetCurTime(time);
+    }
+    fGetBoutTime () : string {
+        return this._sBoutTime;
     }
 
     //获取难度速度

@@ -23,7 +23,7 @@ export default class GameFight extends BaseComponent {
     _nPanelCount : number = 0;//经典模式的方块数量
     _nPanelCur : number = 0;//当前产生的方块个数
     _nCurTouch : number = 0;//当前点击有效的回合
-
+ 
     onLoad () : void {
         let self = this;
         if (self._isLogicNode()) {
@@ -140,12 +140,22 @@ export default class GameFight extends BaseComponent {
         let self = this;
         let result = self._gameCtrl.fJudgeGameResult(data);
         let _re = result.result;
-        if (_re == "fail") {
-
-        } else if (_re == "succeeed") {
-            self.fSettlement(true);
-        } else {
-
+        if (_re == "fail") {//游戏失败
+            //屏蔽所有点击事件
+            self.ShieldNode.addComponent(cc.Button);
+            self.fSettlement();
+            //延迟进入结束界面
+            self.scheduleOnce(()=>{
+                self._runScene(SCENE_NAME.OVER_SCENE);
+            }, 1);
+        } else if (_re == "succeeed") {//游戏成功
+            self.fSettlement();
+            self._runScene(SCENE_NAME.OVER_SCENE);
+        } else {//继续出块
+            if (result.out === true) {
+                self.fAddColChunk(5);
+                self.fMovePanel();
+            }
         }
         // if (data.is) {
         //     if (data.id == self._nPanelCount) {
@@ -171,16 +181,12 @@ export default class GameFight extends BaseComponent {
     }
 
     //游戏结算
-    fSettlement (challenge : boolean) : void {
+    fSettlement () : void {
         let self = this;
         self._bGameStart = false;
         //停止倒计时
         self.unschedule(self._fTimeAction);
-        // self._playerCtrl.fSetPlayerData({nBout : self._nCurTouch});
-        if (self._gameCtrl.fGetCurGameMode() == GAME_MODE.MODE_CLASSICS) {
-            self._playerCtrl.fSetSucceed(challenge);
-            self._playerCtrl.fSetCurTime(self._LabelData["CountDownTime"].string);
-        }
+        self._gameCtrl.fSetBoutTime(self._LabelData["CountDownTime"].string);
     }
 
     fMovePanel () : void {
